@@ -15,9 +15,14 @@
   "bugs": {
     "url": "https://github.com/comp426-2022-fall/a02-sarahalhajli/issues"
   },
-    "bin": {
+  "bin": {
     "galosh.js": "./cli.js"
   },
   "type": "module",
-  "homepage": "https://github.com/comp426-2022-fall/a02-sarahalhajli#readme"
+  "homepage": "https://github.com/comp426-2022-fall/a02-sarahalhajli#readme",
+  "dependencies": {
+    "minimist": "^1.2.7",
+    "moment-timezone": "^0.5.39",
+    "node-fetch": "^3.3.0"
+  }
 }
