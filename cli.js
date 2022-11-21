@@ -3,7 +3,7 @@ import minimist from 'minimist';
 import moment from 'moment-timezone';
 import fetch from 'node-fetch';
 
-const args = require('minimist')(process.argv.slice(2));
+const args = minimist(process.argv.slice(2));
 const timezone = moment.tz.guess();
 
 if(args.includes('-h')) {
