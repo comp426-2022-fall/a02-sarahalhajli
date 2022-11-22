@@ -14,13 +14,39 @@ if(args.h) {
     + '-z            Time zone: uses tz.guess() from moment-timezone by default.\n'
     + '-d 0-6        Day to retrieve weather: 0 is today; defaults to 1.\n'
     + '-j            Echo pretty JSON from open-meteo API and exit.\n')
+    process.exit(0);
 }
 
 if(args.z) {
 	timezone = args.z;
 }
 
-const days = args.d 
+var latitude = 0;
+if(args.n) {
+	latitude = args.n;
+	if(args.s){
+		latitude = -(args.s);
+	}
+}
+
+var longitude = 0;
+if(args.e) {
+	longitude = args.e;
+	if(args.w){
+		longitude = -(args.w);
+	}
+}
+
+const days = args.d;
+const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&timezone=' + timezone);
+const data = await response.json();
+
+
+if(data.daily.precipitation_hours[days] != 0) {
+	console.log("You might need your galoshes");
+} else {
+	console.log("You will not need your galoshes");
+}
 
 if (days == 0) {
   console.log("today.")
@@ -30,25 +56,7 @@ if (days == 0) {
   console.log("tomorrow.")
 }
 
-var latitude = 0;
-if(args.n) {
-	latitude = args.n;
-	if(args.s){
-		latitude = args.s;
-	}
-}
-
-var longitude = 0;
-if(args.e) {
-	longitude = args.e;
-	if(args.w){
-		longitude = args.w;
-	}
-}
-
-const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + 'daily=precipitation_hours');
-const data = await response.json();
-
 if(args.j) {
 	console.log(data);
+	process.exit(0);
 }
