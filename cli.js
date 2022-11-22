@@ -28,8 +28,9 @@ if(args.n) {
 		latitude = -(args.s);
 	}
 }
-if(latitude = 0) {
+if(latitude < -90 || latitude > 90) {
 	console.log("Latitude must be in range");
+	process.exit(0);
 }
 
 var longitude = 0;
@@ -39,8 +40,9 @@ if(args.e) {
 		longitude = -(args.w);
 	}
 }
-if(longitude = 0) {
+if(longitude < -180 || longitude > 180) {
 	console.log("Longitude must be in range");
+	process.exit(0);
 }
 
 const days = args.d;
