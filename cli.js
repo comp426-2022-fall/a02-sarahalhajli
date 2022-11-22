@@ -24,11 +24,9 @@ if(args.z) {
 var latitude = 0;
 if(args.n) {
 	latitude = args.n;
-	if(args.s){
-		latitude = -(args.s);
-	}
-}
-if(latitude) {
+} else if(args.s){
+	latitude = -(args.s);
+} else {
 	console.log("Latitude must be in range");
 	process.exit(0);
 }
@@ -36,11 +34,9 @@ if(latitude) {
 var longitude = 0;
 if(args.e) {
 	longitude = args.e;
-	if(args.w){
-		longitude = -(args.w);
-	}
-}
-if(longitude) {
+} else if(args.w){
+	longitude = -(args.w);
+} else {
 	console.log("Longitude must be in range");
 	process.exit(0);
 }
